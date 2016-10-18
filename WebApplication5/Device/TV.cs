@@ -77,7 +77,7 @@ namespace WebApplication5
         public override string ToString()
         {
 
-            return "Телевизор - состояние: "  + " , текущая громкость: " + Volume + "текущий канал " + Chennel;
+            return "Телевизор - состояние: ";
         }
     }
 }

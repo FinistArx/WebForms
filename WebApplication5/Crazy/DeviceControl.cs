@@ -59,6 +59,9 @@ namespace WebApplication5
             if (SmartHome[id] is IRegulatorTemp)
             {
                 tempButton = new Button();
+                tempInLable = new Label();
+                tempInLable.Text = ((IRegulatorTemp)SmartHome[id]).Temp.ToString();
+                Controls.Add(tempInLable);
                 tempButton1 = new Button();
                 tempButton.ID = "temp" + id.ToString();
                 tempButton.ID = "temp1" + id.ToString();
@@ -74,6 +77,9 @@ namespace WebApplication5
             {
                 volumeButton = new Button();
                 volumeButton1 = new Button();
+                volLabel = new Label();
+                volLabel.Text = ((IVolume)SmartHome[id]).Volume.ToString();
+                Controls.Add(volLabel);
                 volumeButton.ID = "votv+" + id.ToString();
                 volumeButton1.ID = "votv-" + id.ToString();
                 volumeButton.Text = "Увеличить громкость";
@@ -88,14 +94,15 @@ namespace WebApplication5
             {
                 chenellButton = new Button();
                 chenellButton1 = new Button();
+                chenLabel = new Label();
+                chenLabel.Text = ((IChangeChennel)SmartHome[id]).Chennel.ToString();
+                Controls.Add(chenLabel);
                 chenellButton.ID = "nd" + id.ToString();
                 chenellButton1.ID = "pd" + id.ToString();
                 chenellButton.Text = "Следующий";
                 chenellButton1.Text = "Предыдущий";
                 chenellButton.Click += NextChenell;
                 chenellButton1.Click += PrevChenell;
-                Controls.Add(volumeButton);
-                Controls.Add(volumeButton1);
                 Controls.Add(chenellButton);
                 Controls.Add(chenellButton1);
             }
@@ -104,12 +111,12 @@ namespace WebApplication5
             {
                 opencloseButton = new Button();
                 opencloseButton.ID = "opl" + id.ToString();
-                opencloseButton.Text = "Открыть";
+                opencloseButton.Text = "Дверь";
                 opencloseButton.Click += OpenCloseButton;
                 Controls.Add(opencloseButton);
-                //opclLable = new Label();
-                //opclLable.Text = ((IOpenClose)SmartHome[id]).OpenClose ? "Oткрыто" : "Закрыто";
-                //Controls.Add(stateLable);
+                opclLable = new Label();
+                opclLable.Text = ((IOpenClose)SmartHome[id]).OpenClose ? "Oткрыто" : "Закрыто";
+                Controls.Add(opclLable);
             }
 
 
@@ -143,36 +150,32 @@ namespace WebApplication5
         protected void OpenCloseButton(object sender, EventArgs e)
         {
             ((IOpenClose)SmartHome[id]).OpCl();
-
-            //opclLable = new Label();
-            //opclLable.Text = ((IOpenClose)SmartHome[id]).OpenClose ? "Oткрыто" : "Закрыто";
-            //Controls.Add(stateLable);            
+            opclLable.Text = ((IOpenClose)SmartHome[id]).OpenClose ? "Oткрыто" : "Закрыто";
         }
 
         protected void TempDecrease(object sender, EventArgs e)
         {
             ((Temperature)SmartHome[id]).DecreaseTemp();
-            //tempInLable = new Label();
-            //tempInLable.Text = ((Temperature)SmartHome[id]).Temp;
-            //Controls.Add(tempInLable);
+            tempInLable.Text = ((IRegulatorTemp)SmartHome[id]).Temp.ToString();
         }
 
         protected void TempIncrease(object sender, EventArgs e)
         {
             ((Temperature)SmartHome[id]).IncreaseTemp();
+            tempInLable.Text = ((IRegulatorTemp)SmartHome[id]).Temp.ToString();
         }
 
         protected void VolumeButton(object sender, EventArgs e)
         {
             ((IVolume)SmartHome[id]).IncreaseVolume();
-            
+            volLabel.Text = ((IVolume)SmartHome[id]).Volume.ToString();
+
+
         }
         protected void VolumeButton1(object sender, EventArgs e)
         {
             ((IVolume)SmartHome[id]).DecreaseVolume();
-            //deVLable = new Label();
-            //deVLable.Text = ((IVolume)SmartHome[id]).DecreaseVolume();
-
+            volLabel.Text = ((IVolume)SmartHome[id]).Volume.ToString();
         }
 
         protected void OnOffButtonClick(object sender, EventArgs e)
@@ -184,10 +187,12 @@ namespace WebApplication5
         protected void NextChenell(object sender, EventArgs e)
         {
             ((IChangeChennel)SmartHome[id]).NextChennel();
+            chenLabel.Text = ((IChangeChennel)SmartHome[id]).Chennel.ToString();
         }
         protected void PrevChenell(object sender, EventArgs e)
         {
             ((IChangeChennel)SmartHome[id]).PreviusChennel();
+            chenLabel.Text = ((IChangeChennel)SmartHome[id]).Chennel.ToString();
         }
 
     }

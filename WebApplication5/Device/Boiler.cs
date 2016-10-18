@@ -25,7 +25,7 @@ namespace WebApplication5
         public override string ToString()
         {
 
-            return "Котел : состояние: " + " температура:" + " " + Temp;
+            return "Котел - состояние: " ;
         }
     }
 }

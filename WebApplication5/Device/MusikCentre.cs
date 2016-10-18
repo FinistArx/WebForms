@@ -79,7 +79,7 @@ namespace WebApplication5
 
         public override string ToString()
         {
-            return "Музыкальный центр: состояние: " +  ",  текущая громкость : " + Volume + "  текущий канал " + Chennel;
+            return "Музыкальный центр - состояние: ";
         }
     }
 }

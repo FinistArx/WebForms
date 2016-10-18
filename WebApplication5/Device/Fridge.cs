@@ -43,18 +43,7 @@ namespace WebApplication5.Device
 
         public override string ToString()
         {
-            string openclose;
-            if (this.openclose)
-            {
-                openclose = "Открыть";
-            }
-            else
-            {
-                openclose = "Закрыть";
-            }
-
-
-            return "Холодильник состояние: " + "температура : " + " " + Temp + "дверь : " + OpenClose;
+            return "Холодильник - состояние: " ;
         }
     }
 }
